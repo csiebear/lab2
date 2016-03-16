@@ -1,0 +1,17 @@
+Lab2
+學生：李碩軒
+學號：F74004101
+編譯方式：make(請參閱Makefile)
+執行方式：./BMICal
+執行目的：從file.in讀入檔案6筆身高/體重的資料，算出對應的BMI數值與BMI分類，而當遭遇身高或體重為0時，則自動結束程式。
+執行過程：可參考lab2.script。
+
+檔案作用：
+lab2.h：定義一個名為BMI的class，對於member data：身高(height)、體重(weight)、BMI(身體質量指數)有個別的set/get function。
+	建構子則預設身高與體重皆為0。
+	BMI_Cal顧名思義，用於計算BMI，所需參數為身高(h)與體重(w)，將計算結果以小數回傳。
+	categorize則是需要參數BMI，來回傳一個字串，此字串為BMI對應的分類。
+lab2.cpp：為lab2.h的實作
+
+main.cpp：讀file.in，得到身高/體重的資料，若開檔有誤，則回傳錯誤訊息。
+	逐行讀入身高體重資料，並將計算結果輸出到設定的檔案file.out

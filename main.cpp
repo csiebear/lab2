@@ -14,7 +14,7 @@ int main(){
 
 	BMI bmi;
 	//setting the file stream
-	ifstream inFile("infile.in", ios::in);
+	ifstream inFile("file.in", ios::in);
 	if(!inFile) {
 	cerr << "Failed opening" << endl;
 	exit(1);
