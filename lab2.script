@@ -1,0 +1,159 @@
+Script started on 2016年03月16日 (週三) 16時55分00秒
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ cat la2.h
+cat: la2.h: No such file or directory
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ cat la2.hb2.h
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+class BMI{
+	public:
+		BMI();	
+		void setWeight(float weight);//using the set function corresponding to the member data
+		void setHeight(float height);
+		void setBMI(float BMInu);
+		float getWeight();
+		float getHeight();
+		float getBMI();
+		float BMI_Cal(float h,float w);
+		string categorize(float BMInu);
+	private:
+	//the member data
+		float weight;
+		float height;
+		float BMInu;
+		string category;
+};
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ cat lab2.cpp
+#include "lab2.h"
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+using namespace std;
+//constructor
+BMI::BMI(){
+	setWeight(0);
+	setHeight(0);
+}
+void BMI::setWeight(float weight){
+	if(weight!=0)	
+		weight=weight;
+}
+void BMI::setHeight(float height){
+	if(height!=0)
+		height=height;
+}
+void BMI::setBMI(float BMInu){
+	BMInu=BMInu;
+}
+float BMI::getWeight(){
+	return weight;
+}
+float BMI::getHeight(){
+	return height;
+}
+
+float BMI::getBMI(){
+	return BMInu;
+}
+
+float BMI::BMI_Cal(float h,float w){
+	if(h==0 or w==0)
+		exit(1);
+	else
+		BMInu=(w/h/h)*10000;
+	setBMI(BMInu);
+	return BMInu;
+}
+string BMI::categorize(float BMI){
+	if( BMI<15 )
+		category="Very severly underweight\n";
+	else if( (BMI>=15) && (BMI<16) )
+		category="Severly underweight\n";
+	else if( (BMI>=16) && (BMI<18.5) )
+		category="Underweight\n";
+	else if( (BMI>=18.5) && (BMI<25) )
+		category="Normal\n";
+	else if( (BMI>=25) && (BMI<30) )
+		category="Overweight\n";
+	else if( (BMI>=30) && (BMI<35) )
+		category="Obese Class I (Moderately obese)\n";
+	else if( (BMI>=35) && (BMI<40) )
+		category="Obese Class II (Severely obese)\n";
+	else if( BMI>=40 )
+		category="Obese Class III (Very severely obese)\n";
+
+	return category;
+
+}
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ cat lab2.[K[K[K[K[Kmina[K[K[Kain,c[K[K.cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <stdlib.h>
+#include "lab2.h"
+#include <iomanip>
+
+using namespace std;
+
+int main(){
+	string data;
+	float height,weight,BMInumber;
+	string category;	
+
+	BMI bmi;
+	//setting the file stream
+	ifstream inFile("infile.in", ios::in);
+	if(!inFile) {
+	cerr << "Failed opening" << endl;
+	exit(1);
+	}
+	ofstream outFile("file.out", ios::out);
+	if(!outFile) {
+	cerr << "Failed opening" << endl;
+	exit(1);
+	}
+
+	while(inFile>>height>>weight){
+	//	cout<<"Reading file success"<<endl;
+	//	cout<<height<<"\t"<<weight<<endl;
+		bmi.setWeight(weight);
+		bmi.setHeight(height);
+		bmi.BMI_Cal(height,weight);	
+		BMInumber=bmi.getBMI();	
+		category=bmi.categorize(bmi.BMI_Cal(height,weight));
+		outFile<<setprecision(4)<<BMInumber<<"\t"<<category<<endl;
+	}
+	
+	return 0;
+}
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ cat Makefile
+BMICal:lab2.o main.o
+	g++ -o BMICal main.o lab2.o
+lab2.o: lab2.h lab2.cpp
+	g++ -c lab2.cpp
+main.o: main.cpp lab2.h
+	g++ -c main.cpp
+clean:
+	rm lab2.o
+	rm main.o
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ make
+g++ -c lab2.cpp
+g++ -c main.cpp
+g++ -o BMICal main.o lab2.o
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ git[K[K[K./BMICal
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ l[Kca[K[Kcat file.out
+23.53	Normal
+
+33.2	Obese Class I (Moderately obese)
+
+16.38	Underweight
+
+28.69	Overweight
+
+15.73	Severly underweight
+
+]0;F74004101@2015cpp: ~/lab2F74004101@2015cpp:~/lab2$ exit
+
+Script done on 2016年03月16日 (週三) 16時56分06秒
