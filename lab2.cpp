@@ -1,43 +1,61 @@
 #include "lab2.h"
 #include <iostream>
 #include <string>
-
+#include <stdlib.h>
 using namespace std;
-
-void BMI::setWeight(int weight){
-	weight=weight;
+//constructor
+BMI::BMI(){
+	setWeight(0);
+	setHeight(0);
 }
-void BMI::setHeight(int height){
-	height=height;
+void BMI::setWeight(float weight){
+	if(weight!=0)	
+		weight=weight;
 }
-int BMI::getWeight(){
+void BMI::setHeight(float height){
+	if(height!=0)
+		height=height;
+}
+void BMI::setBMI(float BMInu){
+	BMInu=BMInu;
+}
+float BMI::getWeight(){
 	return weight;
 }
-int BMI::getHeight(){
+float BMI::getHeight(){
 	return height;
 }
 
-float BMI::BMI_Cal(){
-	BMI=(weight/height/height)*10000;
-	return BMI;
+float BMI::getBMI(){
+	return BMInu;
+}
+
+float BMI::BMI_Cal(float h,float w){
+	if(h==0 or w==0)
+		exit(1);
+	else
+		BMInu=(w/h/h)*10000;
+	setBMI(BMInu);
+	return BMInu;
 }
 string BMI::categorize(float BMI){
 	if( BMI<15 )
 		category="Very severly underweight\n";
-	if( (BMI>=15) && (BMI<16) )
+	else if( (BMI>=15) && (BMI<16) )
 		category="Severly underweight\n";
-	if( (BMI>=16) && (BMI<18.5) )
+	else if( (BMI>=16) && (BMI<18.5) )
 		category="Underweight\n";
-	if( (BMI>=18.5) && (BMI<25) )
+	else if( (BMI>=18.5) && (BMI<25) )
 		category="Normal\n";
-	if( (BMI>=25) && (BMI<30) )
+	else if( (BMI>=25) && (BMI<30) )
 		category="Overweight\n";
-	if( (BMI>=30) && (BMI<35) )
-		category="Obese Class I (Moderately obese\n";
-	if( (BMI>=35) && (BMI<40) )
+	else if( (BMI>=30) && (BMI<35) )
+		category="Obese Class I (Moderately obese)\n";
+	else if( (BMI>=35) && (BMI<40) )
 		category="Obese Class II (Severely obese)\n";
-	if( BMI>=40 )
+	else if( BMI>=40 )
 		category="Obese Class III (Very severely obese)\n";
+
 	return category;
 
 }

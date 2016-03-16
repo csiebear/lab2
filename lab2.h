@@ -5,16 +5,19 @@ using namespace std;
 
 class BMI{
 	public:
-		void setWeight(int weight);//using the set function corresponding to the member data
-		void setHeight(int height);
-		int getWeight();
-		int getHeight();
-		float BMI_Cal();
-		string categorize(float BMI);
+		BMI();	
+		void setWeight(float weight);//using the set function corresponding to the member data
+		void setHeight(float height);
+		void setBMI(float BMInu);
+		float getWeight();
+		float getHeight();
+		float getBMI();
+		float BMI_Cal(float h,float w);
+		string categorize(float BMInu);
 	private:
 	//the member data
-		int weight;
-		int height;
-		float BMI;
+		float weight;
+		float height;
+		float BMInu;
 		string category;
 };
