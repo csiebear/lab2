@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-
+#include <string>
 using namespace std;
 
 class BMI{
@@ -10,10 +10,11 @@ class BMI{
 		int getWeight();
 		int getHeight();
 		float BMI_Cal();
-		string category(float BMI);
+		string categorize(float BMI);
 	private:
 	//the member data
 		int weight;
 		int height;
 		float BMI;
+		string category;
 };
